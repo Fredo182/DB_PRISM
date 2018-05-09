@@ -13,6 +13,7 @@ CREATE TABLE [dbo].[ROLE_ROUTE](
 	[Delete] [bit] NOT NULL,
 	[ACRUD]  AS (((([Admin]*(16)+[Create]*(8))+[Read]*(4))+[Update]*(2))+[Delete]*(1)),
 	[IsACRUD]  AS (((([Admin]|[Create])|[Read])|[Update])|[Delete]),
+	[META_Lock] [bit] NOT NULL,
 	[USR_Status] [char](1) NOT NULL,
 	[USR_LastUpdateUser] [varchar](50) NOT NULL,
 	[DBS_LastUpdateDateTime] [datetimeoffset](7) NOT NULL,
@@ -41,6 +42,8 @@ GO
 ALTER TABLE [dbo].[ROLE_ROUTE] ADD  DEFAULT ((0)) FOR [Update]
 GO
 ALTER TABLE [dbo].[ROLE_ROUTE] ADD  DEFAULT ((0)) FOR [Delete]
+GO
+ALTER TABLE [dbo].[ROLE_ROUTE] ADD  DEFAULT (0) FOR [META_Lock]
 GO
 ALTER TABLE [dbo].[ROLE_ROUTE] ADD  DEFAULT ('A') FOR [USR_Status]
 GO
